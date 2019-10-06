@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cmd=$1
+
+if [ -n "$cmd" ]; then
+  exec "$cmd"
+else
+  python3 configure.py
+  status=$?
+  [ $status -eq 0 ] && npm start || echo "Unable to start elastalert server, exiting..."
+fi
